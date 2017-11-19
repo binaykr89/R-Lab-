@@ -1,0 +1,31 @@
+#7a
+
+func <- function(x){
+  if(x<0)
+    x=(x^2)+(2*x)+3
+  else if(x>=0 && x<2)
+    x=x+3
+  else
+    x=(x^2)+(4*x)-7
+}
+x=seq(-3,3,length=100)
+length(x)
+fx=0
+for(i in 1:100)
+  fx[i]=func(x[i])
+length(fx)
+print(fx)
+plot(x,fx,"l")
+
+#6b
+
+m[,3] <- m[,2] + m[,3]
+print(m)
+
+#6c
+
+x=t(m)%*%m
+
+#6d
+
+outer(0:4,0:4,"+")
