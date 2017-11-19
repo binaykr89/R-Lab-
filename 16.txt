@@ -6,6 +6,7 @@ You can check this by the command, head(airquality).
 If this is not found, you have to install package by using installPackages option of the Tools menu.
 Rest of the lines are as below
 ============================================
+head(airquality)
 localData=airquality   # get the dataset into localdata
 head(localData)  # shows main data components
  
@@ -15,7 +16,7 @@ dim(localData)
  
 #  b.Display the class of each fields in the data set
  lapply(localData, class) # will display all datatypes
-#$Ozone  …
+#$Ozone  â€¦
  
 #  c.  Test the missing values
  is.na(localData)
