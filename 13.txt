@@ -1,0 +1,36 @@
+empid=vector(mode="numeric",length=3)
+empname=vector(mode="character",length=3)
+doj=vector(mode="character",length=3)
+empcode=vector(mode="numeric",length=3)
+dept=vector(mode="character",length=3)
+desig=vector(mode="character",length=3)
+for(i in 1:3)
+{
+  empid[i]=as.numeric(readline("enter ID:"))
+  empname[i]=readline("enter name:")
+  doj[i]=readline("enter date of joining:")
+  empcode[i]=as.numeric(readline("enter code:"))
+  dept[i]=readline("enter department:")
+  desig[i]=readline("enter desig:")
+}
+
+#start entering
+
+data=data.frame(empid,empname,doj,empcode,dept,desig)
+print(data)
+
+
+write.csv(data,file="data.csv")
+
+write.csv2(data,file="data1.csv")
+#save above lines 13.R
+MyData<-read.csv(file="C:/Users/BINAY/Documents/data.csv",header=TRUE,sep=",")
+print(MyData)
+
+x<-data.frame('1','cha','15/10/1995','ch123','cs','manager')
+write.table(x,file="data.csv",append=TRUE,col.names=FALSE,row.names=TRUE,sep=",")
+
+#run these statements
+MyData<-read.csv(file="C:/Users/BINAY/Documents/data.csv",header=TRUE,sep=",")
+print(MyData)
+

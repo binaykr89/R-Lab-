@@ -1,0 +1,41 @@
+#1a
+x=as.integer(4)
+y=as.integer(5)
+z=x+y
+print(z)
+print(class(z))
+
+#1b
+x=as.integer(2)
+y=as.integer(4)
+z=x/y
+print(z)
+print(class(z))
+
+#2a
+x=seq(1,10,0.1)
+print(x)
+
+#2b
+y=seq(100,50,-2)
+print(y)
+
+#3a
+x=c(4,6,3)
+rep(x,10)
+
+#3b
+paste("Fn",1:30,sep = "")
+
+paste(1:12)
+paste(month.abb, letters)
+
+#4a
+
+1+sum(cumprod(seq(2,38,2)/seq(3,39,2)))
+
+#4b
+i=c(1:25)
+s=sum((2^i)/i + (3^i)/(i^2))
+print(s)
+

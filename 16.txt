@@ -1,0 +1,32 @@
+Dear All,
+This is 16th program solution for B1 batch of the BigData R lab.
+
+Already airquality is installed package in your R studio.
+You can check this by the command, head(airquality).
+If this is not found, you have to install package by using installPackages option of the Tools menu.
+Rest of the lines are as below
+============================================
+localData=airquality   # get the dataset into localdata
+head(localData)  # shows main data components
+ 
+#problem a.Display the dimension of the dataset
+ 
+dim(localData)
+ 
+#  b.Display the class of each fields in the data set
+ lapply(localData, class) # will display all datatypes
+#$Ozone  …
+ 
+#  c.  Test the missing values
+ is.na(localData)
+ 
+# d. Recode the missing values, as mean of the column values
+# replacing NA values with mean of the Ozone data is as below
+localData$Ozone[is.na(localData$Ozone)]= mean(airquality$Ozone, na.rm = TRUE)
+
+# you can do the above for other categories of data like Temperature as well
+ 
+# problem e. Exclude the missing values
+ 
+x=na.omit(localData)
+x  #here x has no NA values

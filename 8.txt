@@ -1,0 +1,17 @@
+#8a
+usn=paste("1NT14CS",1:10,Sep=" ")
+name=c(LETTERS[1:10])
+marks=(runif(10,1,20))
+df=data.frame(usn,name,marks)
+print(df)
+
+
+#8b
+ age=ceiling(runif(10,16,21))
+
+ df=cbind(df,age)
+ print(df)
+
+
+#8C
+ print(subset(df,age<20 & marks>7))

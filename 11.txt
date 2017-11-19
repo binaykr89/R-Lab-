@@ -1,0 +1,53 @@
+queue1<-function(a,aRate,sRate)
+{
+  w<-0
+  for(i in 1:a)
+  {
+    w<-max(0,w+rexp(1,sRate)-rexp(1,aRate))
+  }
+  w
+}
+queue1(50,2,2)
+
+queue2<-function(n,aRate,sRate)
+{
+  w<-0
+  s<-rexp(n,sRate)
+  a<-rexp(n,aRate)
+  for(i in 1:n)
+  {
+    w<-max(0,w+s[i]-a[i])
+  }
+  w
+}
+queue2(50,2,2)
+
+queueRep1<-function(nReps,n,aRate,sRate)
+{
+  wVec<-rep(NA,nReps)
+  for(j in 1:nReps)
+    wVec[j]<-queue2(n,aRate,sRate)
+  wVec
+}
+system.time(queueRep1(100000,50,2,2))
+queueRep2<-function(nReps,n,aRate,sRate)
+{
+  sapply(rep(n,nReps),queue2,aRate,sRate)
+}
+system.time(queueRep2(100000,50,2,2))
+
+  #11c.
+    queueRep3<-function(nReps,n,aRate,sRate)
+    {
+      w<-rep(0,nReps)
+      s<-matrix(rexp(n*nReps,sRate),ncol=nReps)
+      a<-matrix(rexp(n*nReps,aRate),ncol=nReps)
+      for( i  in 1:n)
+      {
+        w<-pmax(0,w+s[i,]-a[i,])
+      }
+      w
+    }
+  queueRep3(3,50,2,2)
+  system.time(queueRep3(200000,50,2,2))
+  

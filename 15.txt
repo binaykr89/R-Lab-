@@ -1,0 +1,14 @@
+library(readr)
+sales <- read_csv("C:/Users/BINAY/Desktop/r lab/sales.csv")
+View(sales)
+
+ts1 = ts(data = sales,frequency = 12,start = c(2009,1))
+ts1
+
+plot(ts1, ylim=c(0, 40000))
+
+require(forecast)
+gghistogram(ts1, add.normal=TRUE, add.kde=TRUE)
+
+series_decomposed <- decompose(ts1,  type = "multiplicative")
+plot(series_decomposed)

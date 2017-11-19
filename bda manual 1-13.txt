@@ -1,0 +1,304 @@
+#1a
+x=as.integer(4)
+y=as.integer(5)
+z=x+y
+print(z)
+print(class(z))
+
+#1b
+x=as.integer(2)
+y=as.integer(4)
+z=x/y
+print(z)
+print(class(z))
+
+#2a
+x=seq(1,10,0.1)
+print(x)
+
+#2b
+y=seq(100,50,-2)
+print(y)
+
+#3a
+x=c(4,6,3)
+rep(x,10)
+
+#3b
+paste("Fn",1:30,sep = "")
+
+paste(1:12)
+paste(month.abb, letters)
+
+#4a
+
+1+sum(cumprod(seq(2,38,2)/seq(3,39,2)))
+
+#4b
+i=c(1:25)
+s=sum((2^i)/i + (3^i)/(i^2))
+print(s)
+
+#5a
+x=c(rep("Control",3),rep("Ear Removal",4),rep("Fake Ear Removal",4))
+xfact=factor(x)
+print(xfact)
+nlevels(xfact)
+xtable=data.frame(xfact)
+print(xtable)
+
+#5b
+x=c(rep("a",25),rep("b",15),rep("c",58))
+print(x)
+length(x)
+xtable=data.frame(x)
+print(xtable)
+
+#6a
+m=matrix(c(1,1,3,5,2,6,-2,-1,-3),3,3,TRUE)
+print(m)
+a=m%*%m%*%m
+print(a)
+
+#6b
+ m=matrix(c(1,2,-1,3,6,-3,c(3,6,-3)+c(1,2,-1)),3,3)
+ print(m)
+
+#6c
+mt=matrix(c(1,1,3,5,2,6,-2,-1,-3),3,3)
+print(mt)
+m=t(mt)
+print(m)
+m=matrix(c(1,1,3,5,2,6,-2,-1,-3),3,3,TRUE)
+print(m)
+a=m%*%mt
+print(a)
+
+#6d
+a=matrix(c(0:4,1:5,2:6,3:7,4:8),5,5)
+print(a)
+
+#7a
+x=seq(-3,3,length=100)
+fun=function(x) {
+  if(x<=-1)
+    f=(x*x)+(2*x)+3
+  else if(x>=0 && x<=2) 
+    f=x+3
+  else
+    f=(x*x+(4+x)-7)
+}
+plot(x,fun(x),"l")
+
+#7b
+m=matrix(c(1,1,3,5,2,6,2,1,3),3,3,TRUE)
+print(m)
+fun=function(m){
+for(i in seq(1:3))
+{
+    for(j in seq(1:3))
+{
+      if(m[i,j]%%2!=0)
+        m[i,j]=m[i,j]*2;
+}
+}
+  return(m)
+}
+a=fun(m)
+a
+
+#8a
+
+usn=paste("1NT14CS",1:10,Sep=" ")
+name=c(LETTERS[1:10])
+marks=(runif(10,1,20))
+df=data.frame(usn,name,marks)
+print(df)
+
+
+#8b
+ age=ceiling(runif(10,16,21))
+
+ df=cbind(df,age)
+ print(df)
+
+
+#8C
+ print(subset(df,age<20 & marks>7))
+
+#9a
+xVec=rnorm(5,10,20)
+yVec=rnorm(5,10,20)
+
+fun=function(x,y){
+  temp=outer(y,x,"<")
+  zVec=colSums(temp)
+  print(zVec)
+}
+fun(xVec,yVec)
+
+#9b
+fun2=function(x,y){
+  temp=sapply(x,y,FUN=">")
+  zVec=colSums(temp)
+  print(zVec)
+}
+fun2(xVec,yVec)
+
+#9c
+fun3=function(x,y){
+  temp=vapply(y,FUN=function(y){y<xVec},FUN.VALUE = xVec)
+  zVec=rowSums(temp)
+  print(zVec)
+}
+fun3(xVec,yVec)
+
+#9d
+system.time(fun(xVec,yVec))
+system.time(fun2(xVec,yVec))
+system.time(fun3(xVec,yVec))
+#10)a)
+
+zellers = function(d,m,yy){
+  c <- floor(yy/100)
+  y <- (yy %% 100)
+  k <- d
+  if(m<=2){
+    y= y-1
+    m <-m+10}
+  else
+    m<-m-2
+  day<-((floor(2.6*m-0.2) + k + y + floor(y/4)+floor(c / 4)-2*c)%%7)
+  
+  c("Sunday" ,"Monday" ,"Tuesday" ,"Wednusday" , "Thursday" , "Friday" , "Saturday")[day+1]
+}
+zellers(28,10,1780)
+
+#10 b)
+dax = c(24,25,26,27)
+max = c(10,10,10,10)
+yax = c(2017,2017,2017,2017)
+
+zellers(dax,max,yax)
+
+#11a.
+queue1<-function(a,aRate,sRate)
+{
+  w<-0
+  for(i in 1:a)
+  {
+    w<-max(0,w+rexp(1,sRate)-rexp(1,aRate))
+  }
+  w
+}
+queue1(50,2,2)
+
+#11b.
+queue2<-function(n,aRate,sRate)
+{
+  w<-0
+  s<-rexp(n,sRate)
+  a<-rexp(n,aRate)
+  for(i in 1:n)
+  {
+    w<-max(0,w+s[i]-a[i])
+  }
+  w
+}
+queue2(50,2,2)
+
+queueRep1<-function(nReps,n,aRate,sRate)
+{
+  wVec<-rep(NA,nReps)
+  for(j in 1:nReps)
+    
+   
+
+#11c.
+queueRep3<-function(nReps,n,aRate,sRate)
+{
+  w<-rep(0,nReps)
+  s<-matrix(rexp(n*nReps,sRate),ncol=nReps)
+  a<-matrix(rexp(n*nReps,aRate),ncol=nReps)
+  for( i  in 1:n)
+  {
+    w<-pmax(0,w+s[i,]-a[i,])
+  }
+  w
+}
+queueRep3(3,50,2,2)
+system.time(queueRep3(200000,50,2,2))
+
+#12) a
+	tsEwma <- function(tsDat,m0=0,delta=0.7){
+  n <-length(tsDat)
+  mVec <-rep(NA,n+1)
+  mVec[1] <- m0
+  for(j in 2:(n+1)){
+    mVec[j] <-(1-delta)*tsDat[j-1] + delta * mVec[j-1]
+  }
+  ts(mVec[-1], start=start(tsDat), frequency = frequency((tsDat)))
+}
+
+tmp <- ts(1:10,start=c(1960,3),frequency = 12)
+tsEwma(tmp)
+
+
+#12 b)
+
+myListFn <- function(n){
+  xVec <- rnorm(n)
+  xBar <- mean(xVec)
+  print(xBar)
+  yVec <- sign(xBar)*rexp(n, rate=abs(1/xBar))
+  count <- sum(abs(yVec) > abs(xVec))
+  list(xVec=xVec, yVec=yVec, count=count)
+}
+
+lapply(rep(10,4),myListFn)
+
+
+sapply(rep(10,4),myListFn)
+
+
+#13
+empname=vector(mode="character",length=3)
+doj=vector(mode="character",length=3)
+empcode=vector(mode="numeric",length=3)
+dept=vector(mode="character",length=3)
+desig=vector(mode="character",length=3)
+for(i in 1:3)
+{
+  empid[i]=as.numeric(readline("enter ID:"))
+  empname[i]=readline("enter name:")
+  doj[i]=readline("enter date of joining:")
+  empcode[i]=as.numeric(readline("enter code:"))
+  dept[i]=readline("enter department:")
+  desig[i]=readline("enter desig:")
+}
+
+#start entering
+
+data=data.frame(empid,empname,doj,empcode,dept,desig)
+print(data)
+
+
+write.csv(data,file="data.csv")
+
+write.csv2(data,file="data1.csv")
+#save above lines 13.R
+MyData<-read.csv(file="C:/Users/lab3/Documents/data.csv",header=TRUE,sep=",")
+print(MyData)
+
+x<-data.frame('1','cha','15/10/1995','ch123','cs','manager')
+write.table(x,file="data.csv",append=TRUE,col.names=FALSE,row.names=TRUE,sep=",")
+
+#run these statements
+MyData<-read.csv(file="C:/Users/student/Documents/data.csv",header=TRUE,sep=",")
+print(MyData)
+
+
+
+
+
+

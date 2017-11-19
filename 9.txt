@@ -1,0 +1,31 @@
+#9a
+xVec=rnorm(5,10,20)
+yVec=rnorm(5,10,20)
+
+fun=function(x,y){
+  temp=outer(y,x,"<")
+  zVec=colSums(temp)
+  print(zVec)
+}
+fun(xVec,yVec)
+
+#9b
+fun2=function(x,y){
+  temp=sapply(x,y,FUN=">")
+  zVec=colSums(temp)
+  print(zVec)
+}
+fun2(xVec,yVec)
+
+#9c
+fun3=function(x,y){
+  temp=vapply(y,FUN=function(y){y<xVec},FUN.VALUE = xVec)
+  zVec=rowSums(temp)
+  print(zVec)
+}
+fun3(xVec,yVec)
+
+#9d
+system.time(fun(xVec,yVec))
+system.time(fun2(xVec,yVec))
+system.time(fun3(xVec,yVec))
